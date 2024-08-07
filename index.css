@@ -74,6 +74,6 @@
     margin: 0;
 }
 
-.timer-input[type=number]{
+.timer-input[type=number] {
     -moz-appearance: textfield;
 }
