@@ -39,9 +39,10 @@ function editingTimer(element) {
     input.className = "timer-input";
 
     input.addEventListener("blur", () => {
-        let inputInt = parseInt(input.value);
+        let inputInt = parseInt(input.value.padStart(2, "0"));
         inputInt > 0 ? element.classList.add("timer-edited") : input.value;
         parseInt(input.value.padStart(2, "0"));
+        input.value = input.value.replace(/^0+(?!$)/, '');
         switch (element.id) {
 
             case "timer-hours":
