@@ -4,7 +4,7 @@ Seja bem-vindo! Esse é o código-fonte do meu projeto de Timer! Com ele, você 
 
 ## Visão Geral
 
-Este Timer é uma demonstração prática das minhas habilidades com HTML, CSS e JavaScript. O projeto permite que o usuário defina horas, minutos e segundos, podendo pausar e resetar o tempo. É um exemplo simples de como usar JavaScript para manipular o DOM e criar interações dinâmicas.
+Este Timer é uma demonstração prática das minhas habilidades com HTML, CSS e JavaScript. O projeto permite que o usuário defina horas, minutos e segundos, podendo pausar e resetar o tempo. É um exemplo simples de como usar JavaScript para manipular o DOM e criar interações dinâmicas. Confira aqui: [https://webbertimer.netlify.app/](https://webbertimer.netlify.app/)
 
 - **Tecnologias:** HTML, CSS, e JavaScript.
 
