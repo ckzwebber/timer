@@ -99,3 +99,23 @@
 .timer-input[type=number] {
     -moz-appearance: textfield;
 }
+
+@media (max-width: 1000px) {
+    #timer-title {
+        font-size: calc(50px + 2vw);
+    }
+
+    #timer-description {
+        font-size: calc(15px + 1vw);
+    }
+
+    #timer {
+        font-size: calc(60px + 2vw);
+        gap: 30px;
+    }
+
+    .timer-button {
+        font-size: calc(10px + 2vw);
+        padding: 10px;
+    }
+}
