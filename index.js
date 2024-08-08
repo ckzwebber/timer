@@ -1,25 +1,26 @@
-let timerHours = document.getElementById("timer-hours");
-let timerMinutes = document.getElementById("timer-minutes");
-let timerSeconds = document.getElementById("timer-seconds");
+let timers = [
+    timerHours = document.getElementById("timer-hours"),
+    timerMinutes = document.getElementById("timer-minutes"),
+    timerSeconds = document.getElementById("timer-seconds")
+];
 let startButton = document.getElementById("start-button");
 let resetButton = document.getElementById("reset-button");
 let pauseButton = document.getElementById("pause-button");
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
-let timer;
+let timer = null;
 let paused = false;
-let timers = [timerHours, timerMinutes, timerSeconds];
 
 editTimer();
-disableSecondaryButtons();
-pauseButton.addEventListener("click", pause)
-resetButton.addEventListener("click", reset);
 
 function editTimer() {
     timers.forEach(element => {
         element.addEventListener("click", handleClick)
     })
+    disableSecondaryButtons();
+    pauseButton.addEventListener("click", pause)
+    resetButton.addEventListener("click", reset);
 }
 
 function handleClick(event) {
