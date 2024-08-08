@@ -11,9 +11,10 @@ let timer;
 let paused = false;
 let timers = [timerHours, timerMinutes, timerSeconds];
 
+editTimer();
+disableSecondaryButtons();
 pauseButton.addEventListener("click", pause)
 resetButton.addEventListener("click", reset);
-editTimer();
 
 function editTimer() {
     timers.forEach(element => {
@@ -39,9 +40,8 @@ function editingTimer(element) {
 
     input.addEventListener("blur", () => {
         let inputInt = parseInt(input.value);
-        input.value > 0 ? element.classList.add("timer-edited") : input.value;
-        input.value.padStart(2, "0");
-
+        inputInt > 0 ? element.classList.add("timer-edited") : input.value;
+        parseInt(input.value.padStart(2, "0"));
         switch (element.id) {
 
             case "timer-hours":
@@ -65,6 +65,7 @@ function editingTimer(element) {
                 seconds = parseInt(input.value);
                 break;
         }
+
         editTimer(element);
         callStartButton(element);
     })
@@ -74,13 +75,15 @@ function callStartButton(element) {
     startButton.addEventListener("click", () => start(element));
 }
 
-
 function start(element) {
     stop();
+    enableSecondaryButtons();
     startingTimer(element);
 }
 
 function startingTimer() {
+    pauseButton.disabled = false;
+    pauseButton.classList.remove("pause-disable");
     timer = setInterval(() => {
         if (paused === false) {
             if (seconds === 0) {
@@ -98,6 +101,7 @@ function startingTimer() {
                 }
             } else {
                 seconds--;
+                seconds === 0 ? disableSecondaryButtons() : null;
             }
             timerHours.textContent = `${String(hours).padStart(2, "0")}h`;
             timerMinutes.textContent = `${String(minutes).padStart(2, "0")}m`;
@@ -119,11 +123,10 @@ function stop() {
     clearInterval(timer);
 }
 
-function pause(timers) {
+function pause() {
     paused = !paused;
-
     if (paused === true) {
-        pauseButton.textContent = "Continue";
+        pauseButton.textContent = "Resume";
         timers.forEach(element => {
             element.classList.add("timer-paused");
         })
@@ -134,11 +137,29 @@ function pause(timers) {
             element.classList.remove("timer-paused");
         })
     }
+}
 
+function disableSecondaryButtons() {
+    pauseButton.classList.add("disable-button");
+    resetButton.classList.add("disable-button");
+    startButton.classList.remove("disable-button");
+    pauseButton.disabled = true;
+    resetButton.disabled = true;
+    startButton.disabled = false;
+}
+
+function enableSecondaryButtons() {
+    pauseButton.classList.remove("disable-button");
+    resetButton.classList.remove("disable-button");
+    startButton.classList.add("disable-button");
+    pauseButton.disabled = false;
+    resetButton.disabled = false;
+    startButton.disabled = true;
 }
 
 function reset() {
     stop();
+    disableSecondaryButtons();
     hours = 0;
     minutes = 0;
     seconds = 0;

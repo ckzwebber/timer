@@ -39,8 +39,13 @@
     color: #FFF;
 }
 
+.disable-button {
+    cursor: not-allowed !important;
+    opacity: 0.2;
+}
+
 .timer-paused {
-    color: dodgerblue;
+    color: rgba(255, 255, 255, 0.25);
 }
 
 #timer-controls {
@@ -82,8 +87,7 @@
 .timer-input:focus {
     color: dodgerblue;
     outline: none;
-    border: 1px solid #FFF;
-    border-radius: 10px;
+    border: none;
 }
 
 .timer-input::-webkit-outer-spin-button,
