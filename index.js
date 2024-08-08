@@ -66,7 +66,6 @@ function editingTimer(element) {
                 seconds = parseInt(input.value);
                 break;
         }
-
         editTimer(element);
         callStartButton(element);
     })
@@ -78,32 +77,37 @@ function callStartButton(element) {
 
 function start(element) {
     stop();
-    enableSecondaryButtons();
     startingTimer(element);
 }
 
 function startingTimer() {
-    pauseButton.disabled = false;
-    pauseButton.classList.remove("pause-disable");
     timer = setInterval(() => {
         if (paused === false) {
             if (seconds === 0) {
                 if (minutes === 0) {
                     if (hours === 0) {
                         clearInterval(timer);
+                        disableSecondaryButtons()
+                        enableStartButton()
                     } else {
+                        enableSecondaryButtons()
+                        disableStartButton()
                         hours--;
                         minutes = 59;
                         seconds = 59;
                     }
                 } else {
+                    enableSecondaryButtons()
+                    disableStartButton()
                     minutes--;
                     seconds = 59;
                 }
             } else {
+                enableSecondaryButtons()
+                disableStartButton()
                 seconds--;
-                seconds === 0 ? disableSecondaryButtons() : null;
             }
+
             timerHours.textContent = `${String(hours).padStart(2, "0")}h`;
             timerMinutes.textContent = `${String(minutes).padStart(2, "0")}m`;
             timerSeconds.textContent = `${String(seconds).padStart(2, "0")}s`;
@@ -111,6 +115,7 @@ function startingTimer() {
             addOrRemoveActiveColor(timerHours)
             addOrRemoveActiveColor(timerMinutes)
             addOrRemoveActiveColor(timerSeconds)
+
         }
     }, 1000);
 
@@ -140,26 +145,33 @@ function pause() {
     }
 }
 
+function disableStartButton() {
+    startButton.classList.add("disable-button");
+    startButton.disabled = true;
+}
+
+function enableStartButton() {
+    startButton.classList.remove("disable-button");
+    startButton.disabled = false;
+}
+
 function disableSecondaryButtons() {
     pauseButton.classList.add("disable-button");
     resetButton.classList.add("disable-button");
-    startButton.classList.remove("disable-button");
     pauseButton.disabled = true;
     resetButton.disabled = true;
-    startButton.disabled = false;
 }
 
 function enableSecondaryButtons() {
     pauseButton.classList.remove("disable-button");
     resetButton.classList.remove("disable-button");
-    startButton.classList.add("disable-button");
     pauseButton.disabled = false;
     resetButton.disabled = false;
-    startButton.disabled = true;
 }
 
 function reset() {
     stop();
+    enableStartButton();
     disableSecondaryButtons();
     hours = 0;
     minutes = 0;
