@@ -1,11 +1,15 @@
 let timers = [
     timerHours = document.getElementById("timer-hours"),
     timerMinutes = document.getElementById("timer-minutes"),
-    timerSeconds = document.getElementById("timer-seconds")
+    timerSeconds = document.getElementById("timer-seconds"),
 ];
-let startButton = document.getElementById("start-button");
-let resetButton = document.getElementById("reset-button");
-let pauseButton = document.getElementById("pause-button");
+
+let buttons = [
+    startButton = document.getElementById("start-button"),
+    resetButton = document.getElementById("reset-button"),
+    pauseButton = document.getElementById("pause-button"),
+]
+
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
