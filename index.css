@@ -103,6 +103,29 @@ body {
     -moz-appearance: textfield;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.social {
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    border-radius: 5px;
+    background: #E3E0D9;
+    transition: ease-in-out 0.3s;
+}
+
+.social:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 @media (max-width: 1000px) {
     #timer-title {
         font-size: calc(50px + 2vw);
